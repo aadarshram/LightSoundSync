@@ -1,0 +1,45 @@
+# DC-DC Converter Based LED Driver
+
+## Introduction
+The objective for this part of the circuit is to light up an LED based on some control. However, a key challenge due to LED characteristics is that even a small change in voltage leads to significant changes in current through it. In order to protect the LED (higher current than rated may damage the LED), we need to maintain a stable voltage achieved by voltage regulation.
+
+### Voltage Regulation
+This can be divided into two types- lineae and switching. 
+
+**Linear Regulators**
+On a high-level, how does this work? You have a switch which controls current passing through it from input to output using an opamp feedback system. The opamp drives the switch based on the feedback received from output voltage compared to a reference voltage and the switch appropriately lets more current flow or less to adjust the output voltage back. Linear regulators are simple, low cost, small, fast but however, the linear regulators dissipate a lot of power (Vin >> Vout) and hence are inefficient.
+
+**Switching Regulators**
+In this case a switching element is used to convert input voltage to desirable output by rapidly switching between on and off creating pulses of power. These pulses are filtered using low-pass filter to get regulated DC voltage. The key advantage is that they do not dissipate much power as heat and hence are more efficient.
+
+Switching regulators or dc-dc converters are often preferred over linear regulators due to higher efficiency.
+
+## Working principle
+Switching regulators work on the principle of Pulse Width Modulation (PWM). The basic idea is to control the output power by means of the duty cycle of a periodic pulse signal.
+
+Vout = D*Vin
+
+Now, this will be sufficient if Vin is stable. However, that is not the case. Voltage supplied by battery depends on its current charge, solar panels depend on current sunlight availability. Thus, we need a closed loop system with negative feedback.
+![image](https://github.com/user-attachments/assets/00d92965-76c2-4575-9b25-d12f46a87318)
+
+Consider the block diagram of the switching regulator above. The goal is to maintain a certain Vout. This certain value is decided by the reference voltage Vref and gain beta.
+
+Vout = Vref / beta
+
+Controlling these will allow us to change Vout.
+
+Now, suppose Vout is not what is expected by Vref. Then, the error difference is found, passed to a compensator which generates a control signal Vctrl that adjusts the duty cycle of the PWM appropriately. Point to be noted is that this PWM modulator that we build cannot supply high current for the load requirements. Hence, we pass this through a power stage and then low-pass filter the PWM signal to get our desired Vout. Thus, we notice the negative feedback loop for this circuit.
+
+## Building blocks
+
+### Low pass filter
+We use an LC low pass filter. We need a very low loss low pass filter so that we can still deliver high load current. Ideal low pass filter is the best choice for DC-DC converter.
+
+When there is a series resistance of inductor and/or an external load resistance, things change.
+The series resistance is proportional to the damping factor. The load resistance is inversely proportional. Suppose, the load has high impedence, this implies poor cutoff in the filter.
+
+**Choosing values for L and C?**
+The values are selected based on the switching frequency of the input signal and inductor ripple current. Choose such that the cut-off frequency is 50-100 times lower than switching frequency to minimize output voltage ripple. The inductance value is selected such that less current passes ensuring less power loss through its resistance and no saturation (saturation occurs when the current is large enough to align all magentic domains and henceforth the inductor acts like a short). However, this implies I need to increase inductance which increases cost for bigger area- trade-off.
+
+The expressions for ripple current and ripple voltage can be derived. We notice that larger value of L and C ensures smaller ripples.
+
