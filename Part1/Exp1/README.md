@@ -47,13 +47,13 @@ The PWM looks like this -
 ![image](https://github.com/user-attachments/assets/38cd835f-d051-4ddd-86cf-b5913c50ed91)
 
 The frequency is almost 100kHz and duty cycle is 50%.
-The duty cycle can be varied using Vctrl.
-Vctrl - D
-2 - 0
-2.25 - 0.25
-2.5 - 0.5
-2.75 - 0.75
-3 - 1
+The duty cycle can be varied using Vctrl.  
+Vctrl - D  
+2 - 0  
+2.25 - 0.25  
+2.5 - 0.5  
+2.75 - 0.75  
+3 - 1  
 
-Other useful files can be found in the folder.
+Other useful files can be found in the folder.  
 --END--
