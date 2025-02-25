@@ -32,8 +32,12 @@ Now, suppose Vout is not what is expected by Vref. Then, the error difference is
 
 ## Building blocks
 
+### PWM Modulator
+The PWM modulator is used to convert a control Voltage Vctrl to a PWM signal by comparing with a fixed frequency ramp signal. The duty cycle can easily be varied by varying Vctrl.
+D = Vctrl / Vm (to be adjusted for dc offset)
+
 ### Low pass filter
-We use an LC low pass filter. We need a very low loss low pass filter so that we can still deliver high load current. Ideal low pass filter is the best choice for DC-DC converter.
+We use an LC low pass filter. Why 2nd order? We desire as pure DC output as possible. So faster roll-off. We need a very low loss low pass filter so that we can still deliver high load current. Ideal low pass filter is the best choice for DC-DC converter.
 
 When there is a series resistance of inductor and/or an external load resistance, things change.
 The series resistance is proportional to the damping factor. The load resistance is inversely proportional. Suppose, the load has high impedence, this implies poor cutoff in the filter.
@@ -43,3 +47,12 @@ The values are selected based on the switching frequency of the input signal and
 
 The expressions for ripple current and ripple voltage can be derived. We notice that larger value of L and C ensures smaller ripples.
 
+### Compensator
+Because of the second order filter we used, we now have a 2 pole system which can lead to poor phase margin (PM). To make it better we compensate for it by either type-1 or type-3 compensation.
+**Type-1 Compensation**
+The key idea in this method is to ensure move the poles away from UGF inserting a "dominant" pole way early. Hence, the unity gain frequency will be much less than the poles effectively acting like a single pole system as far as we are concerned. PM improves. GM also improves. However, this reduces the bandwidth of the system and hence lead to slower responses. A way to do that is to use a single pole low pass filter or integrator to push untiy gain frequency to come early.
+
+One can work out and compare the use of RC-filter opamp vs Opamp-RC integrator for the type-1 compensator. Although, the filter opamp provides additional control to reduce pole further, it comes at cost of decreasing DC gain. Hence, we use an Opamp-RC integrator.
+
+**Type-3 Compensation**
+Instead of trying to reduce UGF with a dominant pole, the idea here is to somehow cancel one of the poles using a zero. This also helps extend the bandwidth.
