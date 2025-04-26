@@ -18,5 +18,7 @@ When all the modules are connected together, we achieve the desired result. Soun
 
 The repository will have collection of some theory on each parts of the circuit, schematic, simulation and results. The simulations are done using LTSpice.
 
----Work in progress--------------------------------------------
-- Aadarsh Ramachandran, Rohita Dutta, Aditya Kartik. IIT Madras
+
+- Aadarsh Ramachandran, Rohita Dutta, Aditya Kartik. IIT Madras.
+
+
