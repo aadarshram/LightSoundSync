@@ -1,5 +1,4 @@
 # Power Stage and LPF
-
 ## Introduction
 ![image](https://github.com/user-attachments/assets/aef75a6f-526e-44bf-abb8-b7b26c837c1a)
 
