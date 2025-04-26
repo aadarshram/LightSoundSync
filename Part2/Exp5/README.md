@@ -18,6 +18,7 @@ To model the speaker for simulation testing, one can use a combination of resist
 
 ## Experiment
 The LTSpice schematic is the following:
+![image](https://github.com/user-attachments/assets/6cc8de2e-9d7e-443c-8e73-e966a8e88167)
 
 1. In simulation, the inductor current should be the average of the differential output voltage divided by R=32 Ohms.
 ![image](https://github.com/user-attachments/assets/a78f2146-31d9-4dbe-aeef-69f2594a6fbc)
