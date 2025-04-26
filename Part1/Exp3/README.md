@@ -23,11 +23,12 @@ To analyze the stability, one can draw the bode plot of the loop gain. We break 
   **Choosing values for R and C in Compensator**
   One can write the loop gain and apply PM>60 degrees to get an inequality condition on the product RC. (Check notes)
 
-  Note: Sometimes, these values wouldn't work due to real-world components.We use C=25nF and R=10k ohms to get a stable output current 50mA after transients.
+Note: Sometimes, these values wouldn't work due to real-world components.We use C=25nF and R=10k ohms to get a stable output current 50mA after transients.
 
 ## Experiment
+![image](https://github.com/user-attachments/assets/3cfcf798-f460-43f2-af10-25334ea6cb98)
+
 1. Vref when set at 250mV results in Iout=50mA.
 ![image](https://github.com/user-attachments/assets/441986d5-77ac-4f08-954a-8a831c666021)
 
-2. AC response- stability analysis??
-3. 
+2. This is controlled by Vref and Rsense. To change current to a desired value, either modify Vref or Rsense.
